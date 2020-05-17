@@ -1,0 +1,19 @@
+{
+  "name": "fullstackopen-backend",
+  "version": "1.0.0",
+  "description": "Exercises for backend section of full stack open 2020 course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timoturkki/fullstackopen-backend.git"
+  },
+  "author": "Timo Turkki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timoturkki/fullstackopen-backend/issues"
+  },
+  "homepage": "https://github.com/timoturkki/fullstackopen-backend#readme"
+}
