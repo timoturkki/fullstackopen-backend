@@ -1,5 +1,8 @@
 # Exercises for backend section of full stack open 2020 course
 
+Application found in:
+https://intense-journey-50443.herokuapp.com/
+
 ## Commands
 
 - Start server `npm start`
