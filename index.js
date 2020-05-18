@@ -1,7 +1,13 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
+
+morgan.token("body", (req) => JSON.stringify(req.body));
 
 app.use(express.json());
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms :body")
+);
 
 const PORT = 3001;
 
@@ -29,7 +35,7 @@ let persons = [
 ];
 
 app.get("/", (_req, res) => {
-  res.send("<h1>Welcome to best phonebook in the world!</h1>");
+  res.send("<h1>Welcome to the best phonebook in the world!</h1>");
 });
 
 app.get("/info", (_req, res) => {
