@@ -31,7 +31,7 @@ app.get("/api/persons", (_req, res, next) => {
     .then((persons) => {
       res.json(persons.map((person) => person.toJSON()));
     })
-    .catch((e) => next(e));
+    .catch((err) => next(err));
 });
 
 app.get("/api/persons/:id", (req, res, next) => {
@@ -45,7 +45,7 @@ app.get("/api/persons/:id", (req, res, next) => {
         res.status(404).end();
       }
     })
-    .catch((e) => next(e));
+    .catch((err) => next(err));
 });
 
 app.delete("/api/persons/:id", (req, res, next) => {
@@ -55,7 +55,7 @@ app.delete("/api/persons/:id", (req, res, next) => {
     .then(() => {
       res.status(204).end();
     })
-    .catch((e) => next(e));
+    .catch((err) => next(err));
 });
 
 app.put("/api/persons/:id", (req, res, next) => {
@@ -68,7 +68,7 @@ app.put("/api/persons/:id", (req, res, next) => {
     .then((updatedPerson) => {
       res.json(updatedPerson.toJSON());
     })
-    .catch((e) => next(e));
+    .catch((err) => next(err));
 });
 
 app.post("/api/persons", (req, res, next) => {
@@ -91,24 +91,24 @@ app.post("/api/persons", (req, res, next) => {
     .then((formattedPerson) => {
       res.json(formattedPerson);
     })
-    .catch((e) => next(e));
+    .catch((err) => next(err));
 });
 
 const unknownEndpoint = (_req, res) => {
   res.status(404).send(`{ error: 'unknown endpoint' }`);
 };
 
-const errorHandler = (error, _req, res, next) => {
+const errorHandler = (err, _req, res, next) => {
   console.log(res);
-  console.error(error.message);
+  console.error(err.message);
 
-  if (error.name === "CastError") {
+  if (err.name === "CastError") {
     return res.status(400).send({ error: "malformatted id" });
-  } else if (error.name === "ValidationError") {
-    return res.status(400).json({ error: error.message });
+  } else if (err.name === "ValidationError") {
+    return res.status(400).json({ error: err.message });
   }
 
-  next(error);
+  next(err);
 };
 
 app.use(unknownEndpoint);
