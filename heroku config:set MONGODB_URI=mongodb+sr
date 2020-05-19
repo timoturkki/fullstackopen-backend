@@ -1,0 +1,1 @@
+heroku config:set MONGODB_URI=mongodb+srv://fullstack:giBo3sXEELpm1T1zCBb^4@cluster0-uoj09.mongodb.net/phonebooth-app?retryWrites=true&w=majority

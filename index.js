@@ -87,8 +87,9 @@ app.post("/api/persons", (req, res, next) => {
 
   person
     .save()
-    .then((savedPerson) => {
-      res.json(savedPerson.toJSON());
+    .then((savedPerson) => savedPerson.toJSON())
+    .then((formattedPerson) => {
+      res.json(formattedPerson.toJSON());
     })
     .catch((e) => next(e));
 });
@@ -97,15 +98,17 @@ const unknownEndpoint = (_req, res) => {
   res.status(404).send(`{ error: 'unknown endpoint' }`);
 };
 
-const errorHandler = (e, _req, res, next) => {
+const errorHandler = (error, _req, res, next) => {
   console.log(res);
-  console.error(e.message);
+  console.error(error.message);
 
-  if (e.name === "CastError") {
+  if (error.name === "CastError") {
     return res.status(400).send({ error: "malformatted id" });
+  } else if (error.name === "ValidationError") {
+    return res.status(400).json({ error: error.message });
   }
 
-  next(e);
+  next(error);
 };
 
 app.use(unknownEndpoint);
