@@ -1,5 +1,5 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
+require('dotenv').config();
+const mongoose = require('mongoose');
 
 const name = process.argv[2];
 const number = process.argv[3];
@@ -13,7 +13,7 @@ const personSchema = new mongoose.Schema({
   number: String,
 });
 
-const Person = mongoose.model("Person", personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 const person = new Person({ name, number });
 
@@ -23,7 +23,7 @@ const closeConnetion = () => {
 
 const printPersons = () => {
   Person.find({}).then((result) => {
-    console.log("*** All persons in phonebook ***");
+    console.log('*** All persons in phonebook ***');
     result.forEach((person) => {
       console.log(person);
     });
@@ -33,7 +33,7 @@ const printPersons = () => {
 
 const savePerson = () => {
   person.save().then((result) => {
-    console.log("person saved!", result);
+    console.log('person saved!', result);
     closeConnetion();
   });
 };
@@ -41,7 +41,7 @@ const savePerson = () => {
 if (process.argv.length < 3) {
   printPersons();
 } else if (process.argv.length < 4) {
-  console.log("give number as argument for the person");
+  console.log('give number as argument for the person');
   process.exit(1);
 } else {
   savePerson();
