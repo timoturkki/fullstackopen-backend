@@ -11,7 +11,9 @@ https://intense-journey-50443.herokuapp.com/
 - Deploy to Heroku `npm run deploy`
 - Build frontend, push to git and deploy `npm run deploy:full`
 - Get Heroku logs `logs:prod`
+- Lint `npm run lint`
 
 ## Development
+Make sure you have valid environment variables defined before starting the local server.
 
 One can use VSCode extension REST Client to make API calls, ready made requests in `requests`-folder.
